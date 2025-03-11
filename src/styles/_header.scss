@@ -1,0 +1,150 @@
+@use "./variables" as v;
+@use "./mixins" as m;
+
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    flex-direction: column;
+    width: 100%;
+    z-index: 2;
+
+    background-color: rgba(23, 61, 26, 0.9);
+
+
+    &.open-menu {
+        display: flex;
+        height: 100vh;
+        position: fixed;
+        animation: slideInFromLeft 1s ease-in-out;
+
+        background-color: v.$primary-color;
+    }
+
+    .top-nav {
+        display: flex;
+        flex-direction: row;
+        padding: 1em;
+
+        h1 {
+            a {
+                font-family: v.$secondary-font-family;
+                color: v.$secondary-color;
+                text-decoration: none;
+            }
+        }
+
+        .hamburger-menu {
+            display: flex;
+            position: absolute;
+            flex-direction: column;
+            cursor: pointer;
+            margin-top: 1em;
+            margin-left: 2em;
+            left: 0;
+
+        
+            span {
+                width: 30px;
+                height: 3px;
+                margin: 3px 0;
+                background-color: v.$secondary-color;
+            }
+        
+            .cross-icon {
+                &:nth-child(1) {
+                    transform: translateY(9px) rotate(45deg);
+                }
+            
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+            
+                &:nth-child(3) {
+                    transform: translateY(-9px) rotate(-45deg);
+                }
+            }
+
+            @include m.forDesktop(desktop) {
+                display: none;
+            }
+        }
+    }
+
+   nav {
+    margin: auto;
+
+    .nav-list {
+        display: none;
+        
+        @include m.forDesktop(desktop) {
+            display: flex;
+            position: absolute;
+            list-style: none;
+            gap: 2em;
+            right: 0;
+            top: 2em;
+            margin-right: 2em;
+
+
+           li {
+            text-align: center;
+             a {
+                font-family: v.$primary-font-family;
+                text-decoration: none;
+                color: v.$secondary-color;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+           }
+        }
+    }
+
+    .open {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        gap: 10px;
+
+        li {
+            text-align: center;
+            a {
+                font-family: v.$primary-font-family;
+                color: v.$secondary-color;
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+        }
+    }
+   }
+
+   .bookingbtn {
+    display: none;
+   }
+
+   .show-cta {
+    margin-bottom: 3em;
+        button {
+            font-family: v.$primary-font-family;
+            background-color: v.$secondary-color;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 1em 5em;
+            border-style: none;
+            border-radius: 5px;
+        }
+   }
+
+}
